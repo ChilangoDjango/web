@@ -1,0 +1,1 @@
+web: gunicorn chilangodjango.wsgi --log-file -

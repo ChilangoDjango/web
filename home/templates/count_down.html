@@ -1,80 +1,84 @@
 {% extends 'base.html' %}
 
+{% load cache %}
 
-{% block head %}
-	{% load static from staticfiles %}
-	<link rel="stylesheet" href="{% static "css/count_down.css" %}" />
-{% endblock %}
+{% cache 10000 count_down %}
 
+	{% block head %}
+		{% load static from staticfiles %}
+		<link rel="stylesheet" href="{% static "css/count_down.css" %}" />
+	{% endblock %}
 
-{% block body %}
-	<div class="count-down-wrapper" style="background-image: url({% static 'img/count_down/wrapper.jpg' %});">
-		<div class="count-down-container">
-			<div class="count-down-content">
-				<p class="next-event-date">6 de Junio 2015</p>
-				<h1>Chilango Django</h1>
-				<h2>1º Meetup</h2>
-				<p class="event-place">Centraal - 9:30 a.m a 2:00 p.m</p>
-				<p class="remining-time" id="ReminingTime">Faltan sólo</p>
-				<div class="count-down-data">
-					<div class="count-down-item">
-						<p class="count-down-item-value" id="Days">00</p>
-						<p class="count-down-item-title">Días</p>
-					</div>
-					<div class="count-down-item">
-						<p class="count-down-item-value" id="Hours">00</p>
-						<p class="count-down-item-title">Horas</p>
-					</div>
-					<div class="count-down-item">
-						<p class="count-down-item-value" id="Minutes">00</p>
-						<p class="count-down-item-title">Minutos</p>
-					</div>
-					<div class="count-down-item">
-						<p class="count-down-item-value" id="Seconds">00</p>
-						<p class="count-down-item-title">Segundos</p>
+	{% block body %}
+		<div class="count-down-wrapper" style="background-image: url({% static 'img/count_down/wrapper.jpg' %});">
+			<div class="count-down-container">
+				<div class="count-down-content">
+					<p class="next-event-date">6 de Junio 2015</p>
+					<h1>Chilango Django</h1>
+					<h2>1º Meetup</h2>
+					<p class="event-place">Centraal - 9:30 a.m a 2:00 p.m</p>
+					<p class="remining-time" id="ReminingTime">Faltan sólo</p>
+					<div class="count-down-data">
+						<div class="count-down-item">
+							<p class="count-down-item-value" id="Days">00</p>
+							<p class="count-down-item-title">Días</p>
+						</div>
+						<div class="count-down-item">
+							<p class="count-down-item-value" id="Hours">00</p>
+							<p class="count-down-item-title">Horas</p>
+						</div>
+						<div class="count-down-item">
+							<p class="count-down-item-value" id="Minutes">00</p>
+							<p class="count-down-item-title">Minutos</p>
+						</div>
+						<div class="count-down-item">
+							<p class="count-down-item-value" id="Seconds">00</p>
+							<p class="count-down-item-title">Segundos</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}
 
 
-{% block body_scripts %}
-	<script>
-		CountDownTimer('06/06/15 9:30 AM', 'countdown');
+	{% block body_scripts %}
+		<script>
+			CountDownTimer('06/06/15 9:30 AM', 'countdown');
 
-		function CountDownTimer(dt, id)
-		{
-			var end = new Date(dt)
-
-			var _second = 1000;
-			var _minute = _second * 60;
-			var _hour = _minute * 60;
-			var _day = _hour * 24;
-			var timer;
-
-			function ShowRemaining()
+			function CountDownTimer(dt, id)
 			{
-				var now = new Date();
-				var distance = end - now;
-				if (distance < 0)
-				{
-					clearInterval(timer);
-					document.getElementById('ReminingTime').innerHTML = "Nos vemos en Centraal";
-					return;
-				}
-				var days = Math.floor(distance / _day);
-				var hours = Math.floor( (distance % _day) / _hour );
-				var minutes = Math.floor( (distance % _hour) / _minute );
-				var seconds = Math.floor( (distance % _minute) / _second );
-				document.getElementById('Days').innerHTML = days
-				document.getElementById('Hours').innerHTML = hours
-				document.getElementById('Minutes').innerHTML = minutes
-				document.getElementById('Seconds').innerHTML = seconds
-			}
-			timer = setInterval(ShowRemaining, 1000);
+				var end = new Date(dt)
 
-		}
-	</script>
-{% endblock %}
+				var _second = 1000;
+				var _minute = _second * 60;
+				var _hour = _minute * 60;
+				var _day = _hour * 24;
+				var timer;
+
+				function ShowRemaining()
+				{
+					var now = new Date();
+					var distance = end - now;
+					if (distance < 0)
+					{
+						clearInterval(timer);
+						document.getElementById('ReminingTime').innerHTML = "Nos vemos en Centraal";
+						return;
+					}
+					var days = Math.floor(distance / _day);
+					var hours = Math.floor( (distance % _day) / _hour );
+					var minutes = Math.floor( (distance % _hour) / _minute );
+					var seconds = Math.floor( (distance % _minute) / _second );
+					document.getElementById('Days').innerHTML = days
+					document.getElementById('Hours').innerHTML = hours
+					document.getElementById('Minutes').innerHTML = minutes
+					document.getElementById('Seconds').innerHTML = seconds
+				}
+				timer = setInterval(ShowRemaining, 1000);
+
+			}
+		</script>
+	{% endblock %}
+
+{% endcache %}

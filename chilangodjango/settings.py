@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -18,6 +18,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,6 +72,23 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Static And Media Files
 STATIC_ROOT = 'staticfiles'
 
 STATIC_URL = '/static/'
+
+MEDIAFILES_LOCATION = 'development_media'
+
+if not DEBUG:
+    STATIC_URL = 'https://%s.s3.amazonaws.com/' %os.getenv('AWS_S3_BUCKET')
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_S3_BUCKET')
+AWS_ACCESS_KEY_ID = os.getenv('AWS_S3_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_S3_SECRET_ACCESS_KEY')
+AWS_QUERYSTRING_AUTH = False
+
+MEDIA_URL = 'https://%s.s3.amazonaws.com/%s/' % (os.getenv('AWS_S3_BUCKET'), MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'batiz.custom_storages.MediaStorage'
+# Static And Media Files

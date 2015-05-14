@@ -1,0 +1,84 @@
+body{
+	background: #efefef;
+	font-size: 20px;
+}
+h1{
+	margin: .3em 0 0 0;
+	text-transform: uppercase;
+}
+h2{
+	margin: 0 0 .5em 0;
+	font-weight: 100;
+}
+.event-place{
+	margin: 0;
+	font-weight: 100;
+}
+.count-down-container{
+	background: rgba(0,0,0,.5);
+	bottom: 0;
+	filter: blur(5px);
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-ms-align-items: center;
+	-o-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	-o-justify-content: center;
+	justify-content: center;
+}
+.count-down-content{
+	color: white;
+	padding: 0 .7em;
+}
+.count-down-data{
+	margin-top: .5em;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+}
+.count-down-data .count-down-item{
+	display: inline-block;
+	width: 23%;
+	margin: 0;
+	padding: 0;
+}
+.count-down-data .count-down-item p{
+	text-align: center;
+}
+.count-down-item-value{
+	font-weight: bolder;
+}
+.count-down-item-title{
+	font-weight: 100;
+	font-size: 16px;
+}
+.count-down-wrapper{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.next-event-date{
+	margin: 0;
+	font-weight: 100;
+}
+.remining-time{
+	margin: 2em 0 0 0;
+	font-size: 16px;
+	text-align: center;
+	font-weight: bolder;
+	text-transform: uppercase;
+}

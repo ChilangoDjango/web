@@ -2,12 +2,12 @@
 
 {% load cache %}
 
-{% cache 10000 count_down %}
+{% block head %}
+	{% load static from staticfiles %}
+	<link rel="stylesheet" href="{% static "css/count_down.css" %}" />
+{% endblock %}
 
-	{% block head %}
-		{% load static from staticfiles %}
-		<link rel="stylesheet" href="{% static "css/count_down.css" %}" />
-	{% endblock %}
+{% cache 10000 count_down %}
 
 	{% block body %}
 		<div class="count-down-wrapper" style="background-image: url({% static 'img/count_down/wrapper.jpg' %});">

@@ -63,7 +63,6 @@
 
 	{% block body_scripts %}
 		<script>
-			CountDownTimer('31/03/16 7:00 PM', 'countdown');
 
 			function CountDownTimer(dt, id)
 			{
@@ -97,6 +96,8 @@
 				timer = setInterval(ShowRemaining, 1000);
 
 			}
+
+			CountDownTimer('2016-04-01T01:00:00', 'countdown');
 		</script>
 	{% endblock %}
 
